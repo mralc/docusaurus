@@ -3,7 +3,7 @@ sidebar_position: 1
 slug: /
 ---
 
-# My Codeing Jounry
+# My Coding Jounry
 
 This Docusaurus site, documents my coding Jounry. This is where i can quickly come aand visit when i need to refrenece something so that i can write code.
 
