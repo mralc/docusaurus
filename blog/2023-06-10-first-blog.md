@@ -1,6 +1,6 @@
 ---
-slug: first-blog-post 2
-title: First Blog Post2
+slug: first-blog-post
+title: First Blog Post
 authors: mralc
 tags: [docusaurus]
 ---
