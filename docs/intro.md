@@ -5,9 +5,9 @@ slug: /
 
 # My Coding Jounry
 
-This Docusaurus site, documents my coding Jounry. This is where i can quickly come aand visit when i need to refrenece something so that i can write code.
+This is my Docusaurus site, documents my coding Jounry. This is where I can quickly come aand visit when I need to refrenece something so that I can write code.
 
-C# and Powershell is the main coding I using.
+C# and Powershell is the main coding I using, I also put Ruby as this really cool and simple lagune.
 
 ## Examples
 

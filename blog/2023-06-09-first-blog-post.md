@@ -1,8 +1,0 @@
----
-slug: first-blog-post 2
-title: First Blog Post2
-authors: mralc
-tags: [docusaurus]
----
-
-Al test
