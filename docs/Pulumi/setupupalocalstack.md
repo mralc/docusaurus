@@ -1,5 +1,5 @@
 ---
-title: The Basics
+title: Setup Local Stack
 ---
 This covers how to manage Pulumi locally.
 
