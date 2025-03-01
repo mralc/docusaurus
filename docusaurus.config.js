@@ -6,6 +6,7 @@ const lightTheme = themes.github;
 const darkTheme = themes.dracula;
 
 
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Al coding journey',
@@ -60,7 +61,22 @@ const config = {
       }),
     ],
   ],
-
+  plugins: [
+    // ... Your other plugins.
+    [
+      require.resolve('docusaurus-plugin-search-local'),
+      {
+        // ... Your options.
+        // `hashed` is recommended as long-term-cache of index file is possible.
+        hashed: true,
+        // ```
+        // language: ["en", "de"],
+        // ```
+        indexDocs: true,
+        indexBlog : true,
+      },
+    ],
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -77,14 +93,19 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Coding',
+            label: 'Coding2',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            type: 'search',
+            position: 'right',
+          },
           {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
             position: 'right',
           },
+
         ],
       },
       footer: {
@@ -104,5 +125,6 @@ const config = {
       },
     }),
 };
+
 
 module.exports = config;
