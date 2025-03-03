@@ -2,16 +2,39 @@
 title: Overview
 ---
 
-Pulumi is a type of Infrastructure as Code (IaC). It allows users to utilize various programming languages to create infrastructure. This means it is more powerful than Terraform, as you can leverage the logic and capabilities of programming languages.
+Pulumi is a type of Infrastructure as Code (IaC) tool that allows users to create infrastructure using various programming languages. This makes it more powerful than Terraform, as it leverages the logic and capabilities of programming languages.
 
-I used pulumi code with .net 8. This why this website has two sections Pulumi and c# what .net is base on.
+I used Pulumi with .NET 8, which is why this website has two sections: Pulumi and C#, which is based on .NET.
 
-Just remeber is not hard, it just understanding that c# is all about creating objects. With Pulumi all we are doing is create resources by provide arguments to a object.
+Remember, it's not difficult; it's just about understanding that C# is all about creating objects. With Pulumi, we are simply creating resources by providing arguments to an object.
 
-So basic one here..
+## Create your first resource
 
-I can explian out how a format is
+Below is an example of how to create a Resource Group in Pulumi.
 
-If you need to import a resource you can do this:
+![Create Resource Group](createrg.png)
 
-Also if you .x=>
+
+We defined:
+
+1. resourceGroup is a new c# object which is created with the following settings. 
+2. resourceGroup is the [Pulumi Function](https://www.pulumi.com/registry/packages/azure-native/api-docs/resources/resourcegroup/) which create the resource. 
+
+As you can see, we are creating a new object where we specify `var` implicitly. This creates an object of type `ResourceGroup` called `resourceGroup` using the `new` ResourceGroup Pulumi function, which requires several arguments to build the actual Azure resource group.
+
+3. The name of the object referenced in the Pulumi stack must be unique.
+4. To create the Azure resource, we need to provide the `location`, `ResourceGroupName`, and `Tags`. With `location`, `ResourceGroupName` you can see we have just provided text. For `Tags` can use an existing C# object that contains all the required tags.
+5. Here, We provide options to Pulumi that are not directly related to the resource.. In this case, we have created a predefined object called `DefaultOptions`. You can define settings like `DeleteBeforeReplace`, which is useful if you want to rename an Azure resource. This option will delete and recreate the resource instead of trying to rename it, which is not possible for some resources. Sometimes you need to deploy resources to a different Azure subscription. You can specify this here to instruct Pulumi to deploy to another subscription. This option can be removed; just make sure the option is removed and the comma is removed, so it looks like this: `});` * Sometimes if you are using your own modules, you may have to build your own `CustomResourceOptions`
+
+## Referencing Existing Azure Infrastructure
+
+At some point, you will need to reference existing resources. You can pull these into Pulumi as follows:
+
+
+![Pull Resource Information](pullresource.png)
+
+We are pull the hostpool key for AVD using the [getHostPoolRegistrationToken](getHostPoolRegistrationToken) fucntion. We create a new "Hostpoolkey" object, provide the required details (`HostPoolName`,`ResourceGroupName 
+`)
+We can use `Hostpoolkey` is are code is we need rerfence the Hostpoolkey. `Hostpoolkey` will have a number of vaules added to it. So you can reference it i.e `Hostpoolkey.Token`
+
+ Some time as thing on genrarted on the fly and the C# does know what vaules to access in the object so you have use the exampe display up where we difine `Hostpoolkey.Apply(x => x.Token)`
