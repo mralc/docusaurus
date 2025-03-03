@@ -33,8 +33,8 @@ At some point, you will need to reference existing resources. You can pull these
 
 ![Pull Resource Information](pullresource.png)
 
-We are pull the hostpool key for AVD using the [getHostPoolRegistrationToken](getHostPoolRegistrationToken) fucntion. We create a new "Hostpoolkey" object, provide the required details (`HostPoolName`,`ResourceGroupName 
-`)
-We can use `Hostpoolkey` is are code is we need rerfence the Hostpoolkey. `Hostpoolkey` will have a number of vaules added to it. So you can reference it i.e `Hostpoolkey.Token`
+We pull the host pool key for AVD using the [getHostPoolRegistrationToken](https://www.pulumi.com/registry/packages/azure-native/api-docs/desktopvirtualization/gethostpoolregistrationtoken/) function. We create a new `Hostpoolkey` object and provide the required details (`HostPoolName`, `ResourceGroupName`).
 
- Some time as thing on genrarted on the fly and the C# does know what vaules to access in the object so you have use the exampe display up where we difine `Hostpoolkey.Apply(x => x.Token)`
+We can use `Hostpoolkey` in our code whenever we need to reference the host pool key. `Hostpoolkey` will have several values added to it, so you can reference it, e.g., `Hostpoolkey.Token`.
+
+Sometimes, as things are generated on the fly, C# might not know what values to access in the object. In such cases, you can use the example displayed above where we define `Hostpoolkey.Apply(x => x.Token)`.
