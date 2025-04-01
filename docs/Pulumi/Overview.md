@@ -25,16 +25,3 @@ As you can see, we are creating a new object where we specify `var` implicitly. 
 3. The name of the object referenced in the Pulumi stack must be unique.
 4. To create the Azure resource, we need to provide the `location`, `ResourceGroupName`, and `Tags`. With `location`, `ResourceGroupName` you can see we have just provided text. For `Tags` can use an existing C# object that contains all the required tags.
 5. Here, We provide options to Pulumi that are not directly related to the resource.. In this case, we have created a predefined object called `DefaultOptions`. You can define settings like `DeleteBeforeReplace`, which is useful if you want to rename an Azure resource. This option will delete and recreate the resource instead of trying to rename it, which is not possible for some resources. Sometimes you need to deploy resources to a different Azure subscription. You can specify this here to instruct Pulumi to deploy to another subscription. This option can be removed; just make sure the option is removed and the comma is removed, so it looks like this: `});` * Sometimes if you are using your own modules, you may have to build your own `CustomResourceOptions`
-
-## Referencing Existing Azure Infrastructure
-
-At some point, you will need to reference existing resources. You can pull these into Pulumi as follows:
-
-
-![Pull Resource Information](pullresource.png)
-
-We pull the host pool key for AVD using the [getHostPoolRegistrationToken](https://www.pulumi.com/registry/packages/azure-native/api-docs/desktopvirtualization/gethostpoolregistrationtoken/) function. We create a new `Hostpoolkey` object and provide the required details (`HostPoolName`, `ResourceGroupName`).
-
-We can use `Hostpoolkey` in our code whenever we need to reference the host pool key. `Hostpoolkey` will have several values added to it, so you can reference it, e.g., `Hostpoolkey.Token`.
-
-Sometimes, as things are generated on the fly, C# might not know what values to access in the object. In such cases, you can use the example displayed above where we define `Hostpoolkey.Apply(x => x.Token)`.
