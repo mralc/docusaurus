@@ -17,6 +17,4 @@ Ctrl + K + U
 In VS code it is to toggle comments on and off: 
 
 ```
-Shift + Alt + A
-```
-
+Shift + Alt + A or Ctrl /
