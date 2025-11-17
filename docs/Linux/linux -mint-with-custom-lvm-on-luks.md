@@ -144,7 +144,20 @@ mount /dev/vgmint/home /mnt/home/
 - Creates temporary directories to access the filesystems
 - Mounts root and home so we can configure them
 
-### Step 10: Update fstab
+### Step 10: Move Home Directory Contents
+
+Move the existing home directory contents from the root partition to the new home partition:
+
+```bash
+mv /mnt/root/home/* /mnt/home/
+```
+
+**What this does:**
+- Transfers all user files and directories from the old location to the new home partition
+- Preserves your user account settings and any files created during installation
+- Without this step, your home directory would be empty on first boot
+
+### Step 11: Update fstab
 
 Add the home partition to the system's fstab file so it mounts automatically at boot:
 
@@ -157,7 +170,7 @@ echo "/dev/mapper/vgmint-home /home           ext4    defaults        0 2" >> /m
 - Ensures `/home` partition mounts automatically at startup
 - The `0 2` values enable filesystem checks during boot
 
-### Step 11: Clean Up and Prepare for Reboot
+### Step 12: Clean Up and Prepare for Reboot
 
 Unmount the partitions and deactivate the volume group:
 
@@ -174,7 +187,7 @@ lvchange -an vgmint
 - Deactivates the volume group to prevent conflicts
 - Ensures everything is properly closed before reboot
 
-### Step 12: Reboot
+### Step 13: Reboot
 
 Now you can safely reboot into your new system:
 
