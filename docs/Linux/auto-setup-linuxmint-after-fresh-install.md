@@ -12,6 +12,68 @@ Whether you're setting up a new machine, recovering from a system failure, or ju
 - **Recovery:** Quick recovery from system failures
 - **Reproducibility:** Never forget to install that one crucial tool again
 
+## Discovering Your Installed Applications
+
+Before creating your automation setup, you need to identify which applications you've manually installed since the initial OS installation. This helps you build a complete picture of your custom environment.
+
+### Finding APT and .deb Packages
+
+To see all manually installed packages (excluding those that came with the OS):
+
+```bash
+comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)
+```
+
+**What this does:**
+- `apt-mark showmanual` lists all manually installed packages
+- `/var/log/installer/initial-status.gz` contains packages from the initial installation
+- `comm -23` compares the two lists and shows only packages you installed after setup
+- This helps you identify exactly what to include in your Ansible playbook
+
+**Tip:** Save this output to a file for reference:
+```bash
+comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u) > manually-installed-packages.txt
+```
+
+### Finding Flatpak Applications
+
+To list all installed Flatpak applications:
+
+```bash
+flatpak list --app
+```
+
+**What this does:**
+- Lists all Flatpak applications installed on your system
+- The `--app` flag filters out runtimes and shows only applications
+- Use this list to populate the Flatpak section of your Ansible playbook
+
+**Getting more details:**
+```bash
+# Show application IDs (needed for Ansible)
+flatpak list --app --columns=application
+
+# Show with origin (where it was installed from)
+flatpak list --app --columns=application,origin
+```
+
+### Creating Your Package Inventory
+
+Use these commands to build a comprehensive inventory:
+
+```bash
+# Create a directory for your automation files
+mkdir -p ~/linux-mint-automation
+
+# Save APT packages
+comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u) > ~/linux-mint-automation/apt-packages.txt
+
+# Save Flatpak apps
+flatpak list --app --columns=application > ~/linux-mint-automation/flatpak-apps.txt
+```
+
+Now you have a clear reference of what needs to be included in your automation setup!
+
 ## Overview of the Automation Strategy
 
 This guide uses a three-part approach:
