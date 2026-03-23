@@ -34,15 +34,17 @@ According to the [Microsoft documentation](https://learn.microsoft.com/en-us/int
 
 > Device-based configuration cannot be assigned to users, and user-based configuration cannot be assigned to devices. Doing so is reported as *Error* or *Not applicable*.
 
-Only the following configuration profile templates are **fully supported** for Windows 11 Enterprise multi-session VMs:
+Following a call with Microsoft, it was confirmed that user settings can be configured for multi-session hosts, provided an Intune user license is assigned. However, only a limited subset of settings are supported — for example, blocking access to the C:\ drive is not available. To identify the supported settings, open the Settings Catalog in the Microsoft Intune admin center, select **Settings picker**, then **Add filter**, and apply the following options:
 
-| Profile Type | Targeting |
+| Field | Value |
 |---|---|
-| Trusted certificate | Device → devices, User → users |
-| SCEP certificate | Device → devices, User → users |
-| PKCS certificate | Device → devices, User → users |
-| VPN | Device tunnel only |
+| Key | OS edition |
+| Operator | == |
+| Value | Enterprise multi-session |
 
+After selecting **Apply**, the list is filtered to show only configuration profile categories that support Windows Enterprise multi-session. The scope of each policy is indicated in parentheses: user-scoped policies are labelled **(User)**, and all others are device-scoped.
+
+In addition to the Settings Catalog, Intune also supports a separate set of configuration profile templates. These are distinct from the user settings described above, and only the following templates are fully supported for Windows 11 Enterprise multi-session VMs:
 In my testing, device and user restrictions (for example, blocking access to the `C:\` drive) did not apply reliably on multi-session hosts. Policies intermittently failed with *Error* or *Not applicable* — even when configured correctly.
 
 ---

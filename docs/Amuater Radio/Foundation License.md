@@ -109,7 +109,7 @@ The higher the frequency, the shorter the wavelength.
 | Prefix | Licence Level        |
 |--------|----------------------|
 | M7     | Foundation Licence   |
-| M6     | Intermediate Licence |
+| M8/9   | Intermediate Licence |
 | M0     | Full Licence         |
 
 Country abbreviations are used in call signs to indicate the country of operation.
@@ -145,7 +145,6 @@ Signals greater than 10 watts EIRP (e.g., 6.1 watts ERP) may require an EMF asse
 
 ### Technical Notes
 
-- A **detector** removes the carrier signal from a received transmission.
 - An **antenna** converts electrical signals into radio waves, and vice versa.
 - **VHF/UHF** antennas are typically limited to line-of-sight range.
 - **End-fed wire antennas** are most commonly associated with interference issues.
@@ -210,7 +209,7 @@ Test yourself on the topics covered in these notes. Answers are provided at the 
 
 **Q2.** Which connector is best suited for use up to several GHz and provides a weatherproof, threaded connection?
 - A) PL-259
-- B) N-Type
+- B) N-Typef
 - C) BNC
 - D) SMA
 
